@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 
 	rice "github.com/GeertJohan/go.rice"
-	"github.com/ains/go-test-html/lib"
+	"github.com/cttibbetts/go-test-html/lib"
 )
 
 func check(err error) {
