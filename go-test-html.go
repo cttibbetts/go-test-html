@@ -48,6 +48,7 @@ func main() {
 	css := templateBox.MustString("template.css")
 	check(err)
 
+	os.Remove(outputDir)
 	err = os.Mkdir(outputDir, 0755)
 	check(err)
 
