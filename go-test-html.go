@@ -42,7 +42,19 @@ func main() {
 	html, err := lib.GenerateHTML(templateBox.MustString("template.html"), summary)
 	check(err)
 
-	err = ioutil.WriteFile(outputFile, []byte(html), 0644)
+	js := templateBox.MustString("template.js")
+	check(err)
+
+	css := templateBox.MustString("template.css")
+	check(err)
+
+	err = ioutil.WriteFile(outputFile+".html", []byte(html), 0644)
+	check(err)
+
+	err = ioutil.WriteFile("gotesthtml.js", []byte(js), 0644)
+	check(err)
+
+	err = ioutil.WriteFile("gotesthtml.css", []byte(css), 0644)
 	check(err)
 
 	outputFilePath, err := filepath.Abs(outputFile)
