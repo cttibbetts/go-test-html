@@ -48,7 +48,7 @@ func main() {
 	css := templateBox.MustString("template.css")
 	check(err)
 
-	err = os.Mkdir(outputDir, 1755)
+	err = os.Mkdir(outputDir, 0755)
 	check(err)
 
 	err = ioutil.WriteFile(outputDir+"/gotesthtml.html", []byte(html), 0644)
