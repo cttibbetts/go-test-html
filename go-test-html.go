@@ -27,7 +27,7 @@ func main() {
 
 	gotestStdoutFile := os.Args[1]
 	gotestStderrFile := os.Args[2]
-	outputFile := os.Args[3]
+	outputDir := os.Args[3]
 
 	gotestStdout, err := os.Open(gotestStdoutFile)
 	check(err)
@@ -48,16 +48,19 @@ func main() {
 	css := templateBox.MustString("template.css")
 	check(err)
 
-	err = ioutil.WriteFile(outputFile+".html", []byte(html), 0644)
+	err = os.Mkdir(outputDir, 1755)
 	check(err)
 
-	err = ioutil.WriteFile("gotesthtml.js", []byte(js), 0644)
+	err = ioutil.WriteFile(outputDir+"/gotesthtml.html", []byte(html), 0644)
 	check(err)
 
-	err = ioutil.WriteFile("gotesthtml.css", []byte(css), 0644)
+	err = ioutil.WriteFile(outputDir+"/gotesthtml.js", []byte(js), 0644)
 	check(err)
 
-	outputFilePath, err := filepath.Abs(outputFile)
+	err = ioutil.WriteFile(outputDir+"/gotesthtml.css", []byte(css), 0644)
+	check(err)
+
+	outputFilePath, err := filepath.Abs(outputDir)
 	check(err)
 
 	fmt.Printf("Test results written to '%s'\n", outputFilePath)
